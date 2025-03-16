@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OutboxPatternWebApi.Migrations
 {
     /// <inheritdoc />
-    public partial class mg1 : Migration
+    public partial class mg1s7443 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,9 +16,10 @@ namespace OutboxPatternWebApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProductName = table.Column<string>(type: "varchar(50)", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    CustomerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Price = table.Column<decimal>(type: "money", nullable: false),
+                    CustomerEmail = table.Column<string>(type: "varchar(350)", nullable: false)
                 },
                 constraints: table =>
                 {

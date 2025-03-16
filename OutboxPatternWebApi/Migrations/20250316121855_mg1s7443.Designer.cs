@@ -12,8 +12,8 @@ using OutboxPatternWebApi.Context;
 namespace OutboxPatternWebApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250127141440_mg1")]
-    partial class mg1
+    [Migration("20250316121855_mg1s7443")]
+    partial class mg1s7443
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,11 +33,14 @@ namespace OutboxPatternWebApi.Migrations
 
                     b.Property<string>("CustomerEmail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(350)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("money");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");

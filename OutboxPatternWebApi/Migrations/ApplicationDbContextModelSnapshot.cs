@@ -30,11 +30,14 @@ namespace OutboxPatternWebApi.Migrations
 
                     b.Property<string>("CustomerEmail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(350)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("money");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
