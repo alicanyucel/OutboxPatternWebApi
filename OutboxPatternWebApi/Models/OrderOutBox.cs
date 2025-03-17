@@ -12,5 +12,6 @@ public sealed class OrderOutBox
     public bool IsCompleted {  get; set; }
     public bool IsFailed {  get; set; }
     public DateTimeOffset? CompletaDate { get; set; }
+    public string FailMessage { get; set; } = string.Empty;
 }
 

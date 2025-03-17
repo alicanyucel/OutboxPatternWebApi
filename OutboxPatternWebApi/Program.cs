@@ -1,5 +1,6 @@
 using Mapster;
 using Microsoft.EntityFrameworkCore;
+using OutboxPatternWebApi.BakgroundService;
 using OutboxPatternWebApi.Context;
 using OutboxPatternWebApi.Dtos;
 using OutboxPatternWebApi.Models;
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 builder.Services.AddFluentEmail("alicanyucel@yucelyazilim.com").AddSmtpSender("localhost", 25);
 builder.Services.AddSwaggerGen();
+builder.Services.AddHostedService<OrderBackgroundService>();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
