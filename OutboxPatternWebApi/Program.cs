@@ -23,7 +23,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
 // create order
-app.MapPost("/Orders/Create", async (CreateOrderDto request, ApplicationDbContext dbcontext, CancellationToken cancelllationToken) =>
+app.MapPost("api/orders/create", async (CreateOrderDto request, ApplicationDbContext dbcontext, CancellationToken cancelllationToken) =>
 {
     Order order = request.Adapt<Order>();
     dbcontext.Add(order);
@@ -31,7 +31,7 @@ app.MapPost("/Orders/Create", async (CreateOrderDto request, ApplicationDbContex
     return Results.Ok(Result<string>.Succeed("sipariþ oluþturuldu"));
 }).Produces<Result<string>>();
 // getall
-app.MapGet("/Orders/GetAll", async (ApplicationDbContext dbcontext, CancellationToken cancelllationToken) =>
+app.MapGet("api/orders/getAll", async (ApplicationDbContext dbcontext, CancellationToken cancelllationToken) =>
 {
     List<Order> orders = await dbcontext.Orders.ToListAsync(cancelllationToken);
     return Results.Ok(orders);
