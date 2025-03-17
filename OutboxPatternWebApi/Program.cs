@@ -7,10 +7,12 @@ using TS.Result;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
 });
+builder.Services.AddFluentEmail("alicanyucel@yucelyazilim.com").AddSmtpSender("localhost", 25);
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -18,7 +20,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
@@ -27,6 +28,12 @@ app.MapPost("api/orders/create", async (CreateOrderDto request, ApplicationDbCon
 {
     Order order = request.Adapt<Order>();
     dbcontext.Add(order);
+    OrderOutBox orderOutBox = new()
+    {
+        OrderId = order.Id,
+        CreatedDate = DateTimeOffset.Now,
+    };
+    dbcontext.Add(orderOutBox);
     await dbcontext.SaveChangesAsync(cancelllationToken);
     return Results.Ok(Result<string>.Succeed("sipariþ oluþturuldu"));
 }).Produces<Result<string>>();

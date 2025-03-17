@@ -11,6 +11,6 @@ public sealed class OrderOutBox
     public DateTimeOffset CreatedDate { get; set; }
     public bool IsCompleted {  get; set; }
     public bool IsFailed {  get; set; }
-    public DateTimeOffset CompletaDate { get; set; }
+    public DateTimeOffset? CompletaDate { get; set; }
 }
 
